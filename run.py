@@ -80,8 +80,14 @@ def report(case, out):
     log("Writing report...")
     path, ranked = reporter.write_report(case, items, meta.get("raw_counts", {}), meta.get("stats", {}),
                                          groups, labels, news, out)
-    for i, p in enumerate(ranked[:6], 1):
-        log(f"  {i}. {p['name']}: {p['count']} ({p['share']*100:.0f}%), {p['n_sources']} source(s), {p['trend']}")
+    for i, p in enumerate(ranked[:8], 1):
+        e = p.get("est")
+        if e:
+            log(f"  {i}. {p['name']}: ~{e['share']*100:.0f}% (95% range {e['lo']*100:.0f}–{e['hi']*100:.0f}%, "
+                f"{e['k']} of the sample)")
+        else:
+            log(f"  {i}. {p['name']}: {p['count']} ({p['share']*100:.0f}%, rough count), "
+                f"{p['n_sources']} source(s), {p['trend']}")
     return path
 
 

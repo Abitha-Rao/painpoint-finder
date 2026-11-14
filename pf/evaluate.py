@@ -42,13 +42,14 @@ def _pain_point_codes(items, groups, labels, keep_codes=None):
     return codes, assign
 
 
-def make_sample(items, groups, labels, out_dir, n=50, seed=7, max_chars=350, exclude_ids=()):
+def make_sample(items, groups, labels, out_dir, n=50, seed=7, max_chars=350, exclude_ids=(),
+                title="Blind labelling sheet"):
     old = read_json(out_dir / "answer_key_HIDDEN.json")
     codes, assign = _pain_point_codes(items, groups, labels, keep_codes=old["codes"] if old else None)
     rng = random.Random(seed)
     pool = [it for it in items if it["id"] not in set(exclude_ids)]
     pick = rng.sample(pool, min(n, len(pool)))
-    lines = ["# Accuracy check: blind labelling sheet", "",
+    lines = [f"# {title}", "",
              "For each complaint, choose the ONE pain point that best describes its main problem.",
              f"Use {NONE_CODE} if it is too vague or fits none of them.", "", "## Pain points"]
     for code, pp in codes.items():

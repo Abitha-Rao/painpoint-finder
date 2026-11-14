@@ -59,7 +59,7 @@ Tested on macOS (Apple Silicon). On Windows use `.venv\Scripts\python` in place 
   and show the tool's own counts only as "rough".
 - Public complaints come from vocal, unhappy users. They show what people complain about,
   not how many users are affected.
-- The two cases in `cases/` are examples. Results change as new reviews are posted.
+- The cases in `cases/` (Razorpay, Swiggy, Paytm) are examples; `_template.json` is the blank to copy. Results change as new reviews are posted.
 
 ## Use responsibly
 

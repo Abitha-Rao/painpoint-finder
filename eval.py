@@ -43,7 +43,10 @@ def main():
             if s.strip():
                 k = read_json(out / s.strip() / "answer_key_HIDDEN.json")
                 exclude += [v["id"] for v in k["key"].values()]
-        path = evaluate.make_sample(items, groups, labels, ev, n=a.n, seed=a.seed, exclude_ids=exclude)
+        title = ("Sample for estimating shares" if a.set.startswith("estimate") else "Accuracy check") \
+            + ": blind labelling sheet"
+        path = evaluate.make_sample(items, groups, labels, ev, n=a.n, seed=a.seed, exclude_ids=exclude,
+                                    title=title)
         print(f"Blind sheet: {path}\nAnswers go in: {ev / 'labels_human.json'}")
     elif a.action == "score":
         res = evaluate.score(ev, labeller=a.labeller)

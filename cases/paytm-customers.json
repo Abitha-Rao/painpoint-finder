@@ -1,0 +1,47 @@
+{
+  "name": "Paytm (customers)",
+  "slug": "paytm-customers",
+  "segment_label": "public",
+  "months": 12,
+  "playstore": [
+    "net.one97.paytm"
+  ],
+  "appstore": [
+    473941634
+  ],
+  "reddit": {
+    "query": "paytm",
+    "subreddits": [
+      "india",
+      "IndiaInvestments",
+      "personalfinanceindia",
+      "CreditCardsIndia",
+      "LegalAdviceIndia"
+    ]
+  },
+  "consumercomplaints": [
+    "/paytm-mobile-solutions-b100340"
+  ],
+  "news_query": "paytm",
+  "product_terms": [
+    "paytm",
+    "one97",
+    "ppbl"
+  ],
+  "segment_keywords": [],
+  "exclude_keywords": [],
+  "max_rating": 3,
+  "max_per_source": 600,
+  "official_stats": [
+    {
+      "stat": "The RBI Ombudsman received 13.34 lakh complaints against banks, NBFCs and payment companies in FY 2024-25, up 13.55% on the year before. This is sector-wide and earlier than this report's window; it gives no figure for Paytm or for payment apps alone.",
+      "source": "RBI Ombudsman Annual Report 2024-25, via ANI/The Tribune, 1 Dec 2025",
+      "url": "https://www.tribuneindia.com/news/business/rbi-ombudsman-sees-13-34-lakh-complaints-in-fy25-loans-credit-cards-dominate"
+    },
+    {
+      "stat": "Loans and advances were the largest category (29.25% of complaints); mobile and electronic banking complaints fell 12.74% year on year.",
+      "source": "same report",
+      "url": "https://www.tribuneindia.com/news/business/rbi-ombudsman-sees-13-34-lakh-complaints-in-fy25-loans-credit-cards-dominate"
+    }
+  ]
+}
