@@ -30,11 +30,15 @@ def item_embeddings(items, cache_path):
     """Embeddings for the cleaned complaints, cached next to the run."""
     ids = [it["id"] for it in items]
     if cache_path.exists():
-        data = np.load(cache_path, allow_pickle=True)
-        if list(data["ids"]) == ids:
-            return data["emb"]
+        try:
+            # allow_pickle stays off: a cache file from someone else must not be able to run code.
+            data = np.load(cache_path, allow_pickle=False)
+            if [str(i) for i in data["ids"]] == ids:
+                return data["emb"]
+        except (ValueError, OSError, KeyError):
+            pass  # old or unreadable cache: rebuild it
     emb = _embed([it["text"][:1000] for it in items])
-    np.savez(cache_path, ids=np.array(ids, dtype=object), emb=emb)
+    np.savez(cache_path, ids=np.array(ids, dtype=str), emb=emb)
     return emb
 
 

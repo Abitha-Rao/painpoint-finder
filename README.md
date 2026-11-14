@@ -1,13 +1,42 @@
-# Pain point finder (v0)
+# Pain point finder: customer pain points from app reviews, for product managers
 
-Finds the top real pain points for a product from public complaints and writes a Word report
-with estimated shares, ranges, quotes and source links. Built for PM case prep on Indian
-products: "improve Razorpay for merchants" becomes "about 18% of public complaints are login
-failures (95% range 12–27%), here are the quotes".
+**Find a product's top customer pain points from public app reviews and complaints, with
+numbers you can defend.** A user-research and voice-of-customer tool for product management
+case studies, PM interviews and case competitions, built around Indian products.
 
-It runs on your own machine. With [Claude Code](https://claude.com/claude-code) it uses your
-subscription for the small amount of reading that needs judgment; no API key is needed. It
-also runs with no AI at all (free mode).
+A case prompt like "improve Razorpay for merchants" becomes: "about 18% of public complaints
+are login failures (95% range 12–27%), and here are the quotes with links". The output is a
+Word report with ranked pain points, estimated shares, real customer quotes and sources.
+
+- **Review analysis without an API key.** It runs as a [Claude Code](https://claude.com/claude-code)
+  skill on your existing subscription, or with no AI at all (free mode).
+- **Sources:** Google Play Store reviews, Apple App Store reviews, Reddit, ConsumerComplaints.in
+  and Google News (India editions).
+- **Runs locally.** Scraping, cleaning and topic clustering of reviews happen on your machine
+  with an open-source sentence-embedding model.
+- **Honest numbers.** Shares come from a hand-labelled random sample with confidence intervals,
+  and a built-in accuracy check tells you how far to trust the automatic grouping.
+
+## What you get
+
+For Swiggy (customers), from 1,043 complaints and a labelled sample of 150:
+
+| Pain point | Estimated share | 95% range |
+|---|---|---|
+| Late delivery and inaccurate ETAs | ~23% | 17–31% |
+| Cancelled or undelivered orders, refunds refused | ~17% | 12–24% |
+| High delivery, platform and packaging fees | ~7% | 4–13% |
+
+Each pain point comes with customer quotes, source links and a slide-ready one-liner, plus a
+short `findings.md` you can hand to a deck-building step. Results as of November 2026; they
+change as new reviews are posted.
+
+## Who it's for
+
+- Aspiring and working product managers doing secondary research for a case or interview.
+- MBA students in case competitions who need evidence for a problem statement.
+- Founders and analysts who want a quick read on what users complain about for a competitor
+  or their own app (fintech, food delivery, e-commerce, quick commerce, and so on).
 
 ## Install
 
@@ -17,7 +46,7 @@ Needs Python 3.10+ and about 1.5 GB of disk (a local language model downloads on
 git clone https://github.com/Abitha-Rao/painpoint-finder.git && cd painpoint-finder
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m pytest -q        # optional: 5 quick checks
+.venv/bin/python -m pytest -q        # optional: quick checks
 ```
 
 Tested on macOS (Apple Silicon). On Windows use `.venv\Scripts\python` in place of
@@ -77,7 +106,17 @@ Trustpilot (blocks all crawlers), Voxya (company pages only load through a priva
 
 1. Log in to Reddit and open https://www.reddit.com/prefs/apps
 2. "Create another app" → type **script** → any name → redirect uri `http://localhost:8080`
-3. Copy `.env.example` to `.env` and paste the client id (under the app name) and secret.
+3. Run `.venv/bin/python setup_reddit.py` and paste the client id (under the app name) and
+   the secret when asked. Typing is hidden; the script tests the keys and saves them to `.env`.
+
+## Security
+
+- Your Reddit keys live only in `.env`, which is git-ignored and readable only by you. Never
+  commit it or paste keys into an issue.
+- `runs/` (collected reviews and reports) is git-ignored too. Keep it that way if you fork.
+- The tool makes requests only to the review sources listed above and, on first run, to
+  Hugging Face to download the open-source model. It sends your data nowhere else.
+- Found a security problem? Please open a GitHub issue without including any secrets.
 
 ## Accuracy check
 

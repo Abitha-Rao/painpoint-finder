@@ -72,3 +72,28 @@ def test_score_counts_agreement(tmp_path):
     res = evaluate.score(tmp_path)
     assert res["n"] == 4 and res["agree"] == 2
     assert res["per_pain_point"]["A"]["precision"] == 0.5
+
+
+def test_secrets_and_data_stay_out_of_git():
+    from pathlib import Path
+    root = Path(__file__).resolve().parent.parent
+    ignored = (root / ".gitignore").read_text().split()
+    assert ".env" in ignored and "runs/" in ignored
+    example = (root / ".env.example").read_text()
+    for line in example.splitlines():
+        if "=" in line:
+            assert line.split("=", 1)[1].strip() == "", ".env.example must not hold real values"
+
+
+def test_embedding_cache_never_unpickles(tmp_path, monkeypatch):
+    import numpy as np
+    from pf import assign
+    items = [{"id": "a:1", "text": "late delivery"}, {"id": "a:2", "text": "refund not received"}]
+    monkeypatch.setattr(assign, "_embed", lambda texts: np.ones((len(texts), 3)))
+    cache = tmp_path / "emb.npz"
+    # A cache written the old way (object array, needs pickle) must be rebuilt, not loaded.
+    np.savez(cache, ids=np.array(["a:1", "a:2"], dtype=object), emb=np.zeros((2, 3)))
+    emb = assign.item_embeddings(items, cache)
+    assert emb.sum() == 6
+    monkeypatch.setattr(assign, "_embed", lambda texts: (_ for _ in ()).throw(AssertionError("should use cache")))
+    assert assign.item_embeddings(items, cache).sum() == 6
