@@ -1,0 +1,48 @@
+{
+  "name": "Swiggy (customers)",
+  "slug": "swiggy-customers",
+  "segment_label": "customer",
+  "months": 12,
+  "playstore": [
+    "in.swiggy.android"
+  ],
+  "appstore": [
+    989540920
+  ],
+  "consumercomplaints": [
+    "/swiggy-b115762"
+  ],
+  "reddit": {
+    "query": "swiggy",
+    "subreddits": [
+      "india",
+      "bangalore",
+      "mumbai",
+      "delhi",
+      "IndiaInvestments"
+    ]
+  },
+  "news_query": "swiggy",
+  "product_terms": [
+    "swiggy",
+    "instamart",
+    "dineout",
+    "zomato"
+  ],
+  "segment_keywords": [],
+  "exclude_keywords": [],
+  "max_rating": 3,
+  "max_per_source": 600,
+  "official_stats": [
+    {
+      "stat": "The National Consumer Helpline registered more than 5.1 lakh complaints against e-commerce and quick-commerce platforms in 2025, up about 14% from 4.4 lakh in 2024.",
+      "source": "Consumer Affairs Ministry reply in the Lok Sabha, via Inc42",
+      "url": "https://inc42.com/buzz/5-1-lakh-complaints-filed-against-ecommerce-platforms-in-2025-govt/"
+    },
+    {
+      "stat": "The top complaint types were non-delivery (79,818), wrong product delivered (75,426) and refunds not paid (61,056), the same themes as this report's top pain points. The figures do not break out food delivery or Swiggy.",
+      "source": "same reply",
+      "url": "https://inc42.com/buzz/5-1-lakh-complaints-filed-against-ecommerce-platforms-in-2025-govt/"
+    }
+  ]
+}

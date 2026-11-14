@@ -1,0 +1,51 @@
+{
+  "name": "Razorpay (merchants)",
+  "slug": "razorpay-merchants",
+  "segment_label": "public",
+  "months": 12,
+  "playstore": [
+    "com.razorpay.payments.app",
+    "com.razorpay.x.app",
+    "com.ezetap.basicapp"
+  ],
+  "appstore": [
+    1497250144,
+    1542911810
+  ],
+  "reddit": {
+    "query": "razorpay",
+    "subreddits": [
+      "IndianStartups",
+      "developersIndia",
+      "india",
+      "StartUpIndia",
+      "smallbusiness"
+    ]
+  },
+  "consumercomplaints": [
+    "/razorpay-b115695"
+  ],
+  "news_query": "razorpay",
+  "product_terms": [
+    "razorpay",
+    "razorpayx",
+    "rzp",
+    "ezetap"
+  ],
+  "segment_keywords": [],
+  "exclude_keywords": [],
+  "max_rating": 3,
+  "max_per_source": 600,
+  "official_stats": [
+    {
+      "stat": "The RBI Ombudsman received 13.34 lakh complaints against banks, NBFCs and payment companies in FY 2024-25, up 13.55% on the year before.",
+      "source": "RBI Ombudsman Annual Report 2024-25, via ANI/The Tribune, Dec 2025",
+      "url": "https://www.tribuneindia.com/news/business/rbi-ombudsman-sees-13-34-lakh-complaints-in-fy25-loans-credit-cards-dominate"
+    },
+    {
+      "stat": "Loans and advances were the largest category (29.25%); mobile and electronic banking complaints fell 12.74% year on year. These cover all regulated entities, not payment gateways specifically.",
+      "source": "same report",
+      "url": "https://www.tribuneindia.com/news/business/rbi-ombudsman-sees-13-34-lakh-complaints-in-fy25-loans-credit-cards-dominate"
+    }
+  ]
+}
